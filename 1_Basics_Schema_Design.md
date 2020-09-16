@@ -18,26 +18,26 @@ Each Part would have its own document:
 
     > db.parts.findOne()
     {
-        _id : ObjectID('AAAA'),
-        partno : '123-aff-456',
-        name : '#4 grommet',
-        qty: 94,
-        cost: 0.94,
-        price: 3.99
+      _id : ObjectID('AAAA'),
+      partno : '123-aff-456',
+      name : '#4 grommet',
+      qty: 94,
+      cost: 0.94,
+      price: 3.99
 
 Each Product would have its own document, which would contain an array of ObjectID references to the Parts that make up that Product:
 
     > db.products.findOne()
     {
-        name : 'left-handed smoke shifter',
-        manufacturer : 'Acme Corp',
-        catalog_number: 1234,
-        parts : [ // array of references to Part documents
-    		ObjectID('AAAA'), // reference to the #4 grommet above
-    		ObjectID('F17C'), // reference to a different Part
-    		ObjectID('D2AA'),
-    		// etc
-    	]
+      name : 'left-handed smoke shifter',
+      manufacturer : 'Acme Corp',
+      catalog_number: 1234,
+      parts : [ // array of references to Part documents
+        ObjectID('AAAA'), // reference to the #4 grommet above
+        ObjectID('F17C'), // reference to a different Part
+        ObjectID('D2AA'),
+        // etc
+      ]
 
 You would then use an **application-level join** to retrieve the parts for a particular product:
 
@@ -54,9 +54,9 @@ This is the classic use case for “parent-referencing” – you’d have a doc
 
     > db.hosts.findOne()
     {
-        _id : ObjectID('AAAB'),
-        name : 'goofy.example.com',
-        ipaddr : '127.66.66.66'
+      _id : ObjectID('AAAB'),
+      name : 'goofy.example.com',
+      ipaddr : '127.66.66.66'
     }
     > db.logmsg.findOne()
     {
@@ -67,9 +67,9 @@ This is the classic use case for “parent-referencing” – you’d have a doc
 
 You’d use a (slightly different) application-level join to find the most recent 5,000 messages for a host:
 
-        // find the parent ‘host’ document
+      // find the parent ‘host’ document
     > host = db.hosts.findOne({ipaddr : '127.66.66.66'}); // assumes unique index
-        // find the most recent 5000 log message documents linked to that host
+      // find the most recent 5000 log message documents linked to that host
     > last_5k_msg = db.logmsg.find({host: host._id}).sort({time : -1}).limit(5000).toArray()
 
 ## Recap
