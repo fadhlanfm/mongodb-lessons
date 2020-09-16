@@ -87,3 +87,5 @@ Based on these factors, you can pick one of the three basic One-to-N schema desi
 - Use an array of references to the N-side objects if the cardinality is one-to-many or if the N-side objects should stand alone for any reasons
 
 - Use a reference to the One-side in the N-side objects if the cardinality is one-to-squillions
+
+[Source](https://www.mongodb.com/blog/post/6-rules-of-thumb-for-mongodb-schema-design-part-1)
