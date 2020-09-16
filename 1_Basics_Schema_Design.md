@@ -65,13 +65,13 @@ This is the classic use case for “parent-referencing” – you’d have a doc
     	host: ObjectID('AAAB') // Reference to the Host document
     }
 
-```sh
+```
 > db.logmsg.findOne()
-    {
-    	time : ISODate("2014-03-28T09:42:41.382Z"),
-    	message : 'cpu is on fire!',
-    	host: ObjectID('AAAB') // Reference to the Host document
-    }
+  {
+    time : ISODate("2014-03-28T09:42:41.382Z"),
+    message : 'cpu is on fire!',
+    host: ObjectID('AAAB') // Reference to the Host document
+  }
 ```
 
 You’d use a (slightly different) application-level join to find the most recent 5,000 messages for a host:
