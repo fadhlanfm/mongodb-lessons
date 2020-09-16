@@ -19,14 +19,14 @@
 Each Part would have its own document:
 
 ```
-  > db.parts.findOne()
-  {
-    _id : ObjectID('AAAA'),
-    partno : '123-aff-456',
-    name : '#4 grommet',
-    qty: 94,
-    cost: 0.94,
-    price: 3.99
+> db.parts.findOne()
+{
+  _id : ObjectID('AAAA'),
+  partno : '123-aff-456',
+  name : '#4 grommet',
+  qty: 94,
+  cost: 0.94,
+  price: 3.99
 ```
 
 Each Product would have its own document, which would contain an array of ObjectID references to the Parts that make up that Product:
@@ -61,18 +61,18 @@ As an added bonus, this schema lets you have individual Parts used by multiple P
 This is the classic use case for “parent-referencing” – you’d have a document for the host, and then store the ObjectID of the host in the documents for the log messages.
 
 ```
-  > db.hosts.findOne()
-  {
-    _id : ObjectID('AAAB'),
-    name : 'goofy.example.com',
-    ipaddr : '127.66.66.66'
-  }
-  > db.logmsg.findOne()
-  {
-    time : ISODate("2014-03-28T09:42:41.382Z"),
-    message : 'cpu is on fire!',
-    host: ObjectID('AAAB') // Reference to the Host document
-  }
+> db.hosts.findOne()
+{
+  _id : ObjectID('AAAB'),
+  name : 'goofy.example.com',
+  ipaddr : '127.66.66.66'
+}
+> db.logmsg.findOne()
+{
+  time : ISODate("2014-03-28T09:42:41.382Z"),
+  message : 'cpu is on fire!',
+  host: ObjectID('AAAB') // Reference to the Host document
+}
 ```
 
 You’d use a (slightly different) application-level join to find the most recent 5,000 messages for a host:
